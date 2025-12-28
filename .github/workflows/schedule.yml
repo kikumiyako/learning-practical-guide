@@ -1,7 +1,9 @@
 name: Schedule
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '* /3 * * *'  # Every 15 minutes
+    - cron: '*/3 * * * *'  # Every 3 minutes
+
 jobs:
   run-scheduled:
     runs-on: ubuntu-latest
