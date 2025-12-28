@@ -7,9 +7,17 @@ on:
         default: "Hello"
         required: true
         description: A cheerful word
+      log-level:
+        type: choice
+        description: Select the log level
+        options:
+          - debug
+          - info
+          - warning
+          - error
 
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.greeting }}"
+      - run: echo "${{ inputs.greeting }}! Your choice is {{ inputs.log-level }}."
