@@ -1,0 +1,10 @@
+name: Schedule
+on:
+  schedule:
+    - cron: '* /3 * * *'  # Every 15 minutes
+jobs:
+  run-scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This workflow runs every 15 minutes."
+      - run: date
