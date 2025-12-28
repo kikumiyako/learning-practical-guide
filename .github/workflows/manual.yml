@@ -20,4 +20,4 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.greeting }}! Your choice is {{ inputs.log-level }}."
+      - run: echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
