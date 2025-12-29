@@ -25,6 +25,11 @@ jobs:
           ACTOR: ${{ github.actor }}
           USERNAME: ${{ vars.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
+          LITERAL_NULL: ${{ null }}
+          LITERAL_BOOLEAN: ${{ true }}
+          LITERAL_NUMBER: ${{ 12345 }}
+          LITERAL_STRING: ${{ 'sample string' }}
+          LITERAL_OMISSION_STRING: omit expression notation
         run: |
           echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
           echo "${BRANCH} is referred from environment variable."
@@ -33,3 +38,4 @@ jobs:
           echo "The USERNAME is ${USERNAME}."
           echo "The PASSWORD is ${PASSWORD}."
           echo "The PASSWORD is ${PASSWORD:0:1} ${PASSWORD#?}"
+          echo printenv
