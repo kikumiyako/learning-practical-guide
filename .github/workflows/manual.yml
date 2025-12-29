@@ -23,7 +23,8 @@ jobs:
   run_manual:
     runs-on: ubuntu-latest
     steps:
-      - env:
+      - name: Expression samples
+        env:
           BRANCH: manual-trigger
           ACTOR: ${{ github.actor }}
           USERNAME: ${{ vars.USERNAME }}
@@ -31,8 +32,8 @@ jobs:
           LITERAL_NULL: ${{ null }}
           LITERAL_BOOLEAN: ${{ true }}
           LITERAL_NUMBER: ${{ 12345 }}
-          LITERAL_STRING: ${{ 'sample string' }}
-          LITERAL_OMISSION_STRING: omit expression notation
+          LITERAL_STRING: ${{ 'sample string' }} # string with quotes
+          LITERAL_OMISSION_STRING: omit expression notation # string without quotes
         run: |
           echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
           echo "${BRANCH} is referred from environment variable."
