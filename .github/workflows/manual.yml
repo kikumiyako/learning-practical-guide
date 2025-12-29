@@ -17,7 +17,12 @@ on:
           - error
 
 jobs:
-  run:
+  run_manual:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
+      - env:
+          BRANCH: manual-trigger
+        run: |
+          echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
+          echo "${BRANCH} is referred from environment variable."
+          echi "${{ env.BRANCH }} is also referred from environment variable."
