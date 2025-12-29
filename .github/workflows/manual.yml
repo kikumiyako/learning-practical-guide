@@ -22,7 +22,9 @@ jobs:
     steps:
       - env:
           BRANCH: manual-trigger
+          ACTOR: ${{ github.actor }}
         run: |
           echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
           echo "${BRANCH} is referred from environment variable."
           echo "${{ env.BRANCH }} is also referred from environment variable."
+          echo "This actor is ${ACTOR}."
