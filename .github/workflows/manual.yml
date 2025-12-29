@@ -38,4 +38,4 @@ jobs:
           echo "The USERNAME is ${USERNAME}."
           echo "The PASSWORD is ${PASSWORD}."
           echo "The PASSWORD is ${PASSWORD:0:1} ${PASSWORD#?}"
-          echo printenv
+          printenv 
