@@ -18,14 +18,14 @@ jobs:
             ENDS_WITH_SENSITIVE: ${{ endsWith('hello', 'LO') }}
             CONTAINS_LABEL: ${{ contains(github.event.issue.labels.*.name, 'bug') }}
           run: |
-            echo "HTML_URL: ${{ github.event }}"
-            echo "HTML_URL_FILTERED: ${{ github.event.*.html_url }}"
+            echo "HTML_URL: ${{ toJSON(github.event) }}"
+            echo "HTML_URL_FILTERED: ${{ toJSON(github.event.*.html_url) }}"
             echo "CONTAINS_FUNC: ${CONTAINS_FUNC}"
             echo "CONTAINS_FUNC_SENSITIVE: ${CONTAINS_FUNC_SENSITIVE}"
             echo "STARTS_WITH_FUNC: ${STARTS_WITH_FUNC}"
             echo "STARTS_WITH_SENSITIVE: ${STARTS_WITH_SENSITIVE}"
             echo "ENDS_WITH_FUNC: ${ENDS_WITH_FUNC}"
             echo "ENDS_WITH_SENSITIVE: ${ENDS_WITH_SENSITIVE}"
-            echo "LABELS: ${{ github.event.issue.labels }}"
-            echo "LABEL_NAMES: ${{ github.event.issue.labels.*.name }}"
+            echo "LABELS: ${{ toJSON(github.event.issue.labels) }}"
+            echo "LABEL_NAMES: ${{ toJSON(github.event.issue.labels.*.name) }}"
             echo "CONTAINS_LABEL: ${CONTAINS_LABEL}"
