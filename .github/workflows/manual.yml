@@ -23,8 +23,13 @@ jobs:
       - env:
           BRANCH: manual-trigger
           ACTOR: ${{ github.actor }}
+          USERNAME: ${{ vars.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           echo "${{ inputs.greeting }}! Your choice is ${{ inputs.log-level }}."
           echo "${BRANCH} is referred from environment variable."
           echo "${{ env.BRANCH }} is also referred from environment variable."
           echo "This actor is ${ACTOR}."
+          echo "The USERNAME is ${USERNAME}."
+          echo "The PASSWORD is ${PASSWORD}."
+          echo "The PASSWORD is ${PASSWORD:0:1} ${PASSWORD#?}"
