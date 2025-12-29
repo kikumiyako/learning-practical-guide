@@ -10,17 +10,22 @@ jobs:
       steps:
         - name: Function samples
           env:
-            HTML_URL: ${{ github.event }}
-            HTML_URL_FILTERED: ${{ github.event.*.html_url }}
             CONTAINS_FUNC: ${{ contains('hello', 'ell') }}
             CONTAINS_FUNC_SENSITIVE: ${{ contains('hello', 'ELL') }}
             STARTS_WITH_FUNC: ${{ startsWith('hello', 'he') }}
             STARTS_WITH_SENSITIVE: ${{ startsWith('hello', 'HE') }}
             ENDS_WITH_FUNC: ${{ endsWith('hello', 'lo') }}
             ENDS_WITH_SENSITIVE: ${{ endsWith('hello', 'LO') }}
-            LABELS: ${{ github.event.issue.labels }}
-            LABEL_NAMES: ${{ github.event.issue.labels.*.name }}
             CONTAINS_LABEL: ${{ contains(github.event.issue.labels.*.name, 'bug') }}
           run: |
-            echo "HTML_URL: ${HTML_URL}"
-            echo "HTML_URL_FILTERED: ${HTML_URL_FILTERED}"
+            echo "HTML_URL: ${{ github.event }}"
+            echo "HTML_URL_FILTERED: ${{ github.event.*.html_url }}"
+            echo "CONTAINS_FUNC: ${CONTAINS_FUNC}"
+            echo "CONTAINS_FUNC_SENSITIVE: ${CONTAINS_FUNC_SENSITIVE}"
+            echo "STARTS_WITH_FUNC: ${STARTS_WITH_FUNC}"
+            echo "STARTS_WITH_SENSITIVE: ${STARTS_WITH_SENSITIVE}"
+            echo "ENDS_WITH_FUNC: ${ENDS_WITH_FUNC}"
+            echo "ENDS_WITH_SENSITIVE: ${ENDS_WITH_SENSITIVE}"
+            echo "LABELS: ${{ github.event.issue.labels }}"
+            echo "LABEL_NAMES: ${{ github.event.issue.labels.*.name }}"
+            echo "CONTAINS_LABEL: ${CONTAINS_LABEL}"
