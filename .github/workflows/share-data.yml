@@ -19,7 +19,8 @@ jobs:
         run: echo 'result=Hello' >> ${GITHUB_OUTPUT}
 
       - name: use data
-        run: echo 'This is a shared data ${RESULT}'
+        run: |
+          echo "This is a shared data: ${RESULT}"
         env:
           RESULT: ${{ steps.output-data.outputs.result }}
 
