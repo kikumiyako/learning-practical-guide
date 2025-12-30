@@ -1,0 +1,29 @@
+name: Conditions
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-conditions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'run id is ${RUN_ID}'
+        env:
+          RUN_ID: ${{ github.run_id }}
+
+      - run: echo 'hello 1'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        if: ${{ contains(env.RUN_ID, '1') }}
+
+      - run: echo 'hello 2'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        if: ${{ contains(env.RUN_ID, '2') }}
+
+      - run: echo 'hello 3'
+        env:
+          RUN_ID: ${{ github.run_id }}
+        if: ${{ contains(env.RUN_ID, '3') }}

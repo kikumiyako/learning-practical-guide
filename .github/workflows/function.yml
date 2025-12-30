@@ -1,9 +1,6 @@
 name: Function
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 jobs:
     run_function:
       runs-on: ubuntu-latest
