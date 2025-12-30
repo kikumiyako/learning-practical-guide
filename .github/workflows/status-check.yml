@@ -25,10 +25,6 @@ jobs:
       - run: echo 'hello 5'
         if: ${{ always() }}
 
-      - name: Bad Practice Example, never ends
-        uses: actions/checkout@v4
-        if: ${{ always() }}
-
       - run: echo 'hello 6'
         if: ${{ success() }}
 
