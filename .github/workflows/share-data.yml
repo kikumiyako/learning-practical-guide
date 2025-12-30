@@ -2,9 +2,6 @@ name: Share Data Workflow
 run-name: Share Data Workflow Run-Name
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   run-share-data:
