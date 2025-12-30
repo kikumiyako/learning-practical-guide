@@ -17,6 +17,9 @@ jobs:
             ENDS_WITH_FUNC: ${{ endsWith('hello', 'lo') }}
             ENDS_WITH_SENSITIVE: ${{ endsWith('hello', 'LO') }}
             CONTAINS_LABEL: ${{ contains(github.event.issue.labels.*.name, 'bug') }}
+            FORMAT_FUNC: ${{ format('First: {0}, Second: {1}', 'first-value!', 'second-value!') }}
+            JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
+            HASH_FUNC: ${{ hashFiles('README.md') }}
           run: |
             echo "HTML_URL: ${{ toJSON(github.event) }}"
             echo "HTML_URL_FILTERED: ${{ toJSON(github.event.*.html_url) }}"
@@ -29,3 +32,6 @@ jobs:
             echo "LABELS: ${{ toJSON(github.event.issue.labels) }}"
             echo "LABEL_NAMES: ${{ toJSON(github.event.issue.labels.*.name) }}"
             echo "CONTAINS_LABEL: ${CONTAINS_LABEL}"
+            echo "FORMAT_FUNC: ${FORMAT_FUNC}"
+            echo "JOIN_FUNC: ${JOIN_FUNC}"
+            echo "HASH_FUNC: ${HASH_FUNC}"
