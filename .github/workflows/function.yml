@@ -17,7 +17,7 @@ jobs:
             ENDS_WITH_FUNC: ${{ endsWith('hello', 'lo') }}
             ENDS_WITH_SENSITIVE: ${{ endsWith('hello', 'LO') }}
             CONTAINS_LABEL: ${{ contains(github.event.issue.labels.*.name, 'bug') }}
-            FORMAT_FUNC: ${{ format('First: {0}, Second: {1}', 'first-value!', 'second-value!') }}
+            FORMAT_FUNC: "${{ format('First: {0}, Second: {1}', 'first-value!', 'second-value!') }}"
             JOIN_FUNC: ${{ join(github.event.*.html_url, ', ') }}
             HASH_FUNC: ${{ hashFiles('README.md') }}
           run: |
