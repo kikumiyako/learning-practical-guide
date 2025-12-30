@@ -1,9 +1,6 @@
 name: Conditions
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
   run-conditions:
