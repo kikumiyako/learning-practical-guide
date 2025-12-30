@@ -8,6 +8,9 @@ jobs:
     run_function:
       runs-on: ubuntu-latest
       steps:
+        - name: checkout
+          uses: actions/checkout@v4
+
         - name: Function samples
           env:
             CONTAINS_FUNC: ${{ contains('hello', 'ell') }}
