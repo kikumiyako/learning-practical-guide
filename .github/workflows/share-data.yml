@@ -1,0 +1,27 @@
+name: Share Data Workflow
+run-name: Share Data Workflow Run-Name
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-share-data:
+    runs-on: ubuntu-latest
+    name: Run Share Data Action Job 1
+    steps:
+      - name: Job1 Step 1
+        run: echo 'hello'
+
+      - name: output data
+        id: output-data
+        run: echo 'result=Hello' >> ${GITHUB_OUTPUT}
+
+      - name: use data
+        run: echo 'This is a shared data ${RESULT}'
+        env:
+          RESULT: ${{ steps.output-data.outputs.result }}
+
+
+
