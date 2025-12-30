@@ -1,0 +1,32 @@
+name: Status Check
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'hello 1'
+
+      - run: echo 'hello 2'
+        if: ${{ success() }}
+
+      - run: exit 1
+
+      - run: echo 'hello 3'
+        if: ${{ failure() }}
+
+      - run: echo 'hello 4'
+        if: ${{ cancelled() }}
+
+      - run: echo 'hello 5'
+        if: ${{ always() }}
+
+      - run: echo 'hello 6'
+        if: ${{ success() }}
+
+      - run: echo 'hello 7'
+        if: ${{ failure() }}
