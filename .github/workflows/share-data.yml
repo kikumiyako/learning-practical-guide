@@ -16,11 +16,15 @@ jobs:
 
       - name: output data
         id: output-data
-        run: echo 'result=Hello' >> ${GITHUB_OUTPUT}
+        run: |
+          # <key>=<value> format to set output
+          echo "result=Hello" >> ${GITHUB_OUTPUT}
+          echo "WORLD=World" >> ${GITHUB_ENV}
 
       - name: use data
         run: |
-          echo "This is a shared data: ${RESULT}"
+          echo "This is a GITHUB_OUTPUT data: ${RESULT}"
+          echo "This is a GITHUB_ENV data: ${WORLD}"
         env:
           RESULT: ${{ steps.output-data.outputs.result }}
 
