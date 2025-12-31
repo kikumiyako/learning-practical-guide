@@ -2,9 +2,6 @@ name: Reporting
 run-name: Reporting Workflow
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash

@@ -1,0 +1,31 @@
+name: Run-in-parallel
+run-name: Run Jobs in Parallel and Sequentially
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    name: First Job
+    timeout-minutes: 1
+    steps:
+      - run: sleep 5 && echo "First job completed"
+
+  second:
+    runs-on: ubuntu-latest
+    name: Second Job
+    timeout-minutes: 1
+    steps:
+      - run: sleep 5 && echo "Second job completed"
+
+  third:
+    runs-on: ubuntu-latest
+    name: Third Job
+    timeout-minutes: 1
+    steps:
+      - run: sleep 5 && echo "Third job completed"
