@@ -19,6 +19,16 @@ jobs:
 
       - name: Summary Example
         run: |
-          echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
-          echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
-          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"
+#          echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
+#          echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
+#          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"
+          cat >> "${GITHUB_STEP_SUMMARY}" << 'EOF'
+          ## Example Title 1 :rocket:
+          - first line
+          - second line
+          EOF
+          cat << 'EOF'
+          ## Example Title 2 🥈
+          - third line
+          - fourth line
+          EOF >> "${GITHUB_STEP_SUMMARY}"

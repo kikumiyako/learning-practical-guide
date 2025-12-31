@@ -2,9 +2,6 @@ name: Matrix-manual
 run-name: Matrix settings manually
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
