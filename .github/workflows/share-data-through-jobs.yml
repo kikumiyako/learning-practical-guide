@@ -1,0 +1,32 @@
+name: share-data-through-jobs
+run-name: Share data through jobs using needs
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: First Job
+    steps:
+      - name: Create id
+        id: generate_id
+        run: echo "result=12345" >> "${GITHUB_OUTPUT}" # ステップレベルのoutput
+    outputs:
+      result: ${{ steps.generate_id.outputs.result }} # ジョブレベルのoutput
+
+  second:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Second Job
+    needs: first
+    steps:
+      - name: Use generated id
+        env:
+          RESULT: ${{ needs.first.outputs.result }} # ジョブレベルのoutputを参照
+        run: echo "${RESULT}"

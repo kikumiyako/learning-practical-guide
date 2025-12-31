@@ -2,9 +2,6 @@ name: Run-in-parallel
 run-name: Run Jobs in Parallel and Sequentially
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
