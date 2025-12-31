@@ -1,0 +1,21 @@
+name: Reporting
+run-name: Reporting Workflow
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  reporting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Reporting Job
+    steps:
+      - name: Annotation Example
+        run: |
+          echo "::error::This is an error"
+          echo "::warning::This is a warning"
+          echo "::notice::This is a notice"
