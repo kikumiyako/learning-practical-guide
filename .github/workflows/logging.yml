@@ -12,3 +12,10 @@ jobs:
     name: Logging sample
     steps:
       - run: echo "::debug::This is a debug message"
+
+      - run: |
+          set -x
+          echo "This is a command with debug output"
+          date
+          echo "hi"
+          hostname
