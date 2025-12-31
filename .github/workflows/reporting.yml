@@ -42,13 +42,18 @@ jobs:
           cat >> "${GITHUB_STEP_SUMMARY}" << EOF
           ## Example Title 1 :rocket:
           - first line
-          - second line
           - command: $PWD 
           EOF
-          
+
           cat >> "${GITHUB_STEP_SUMMARY}" << 'EOF'
           ## Example Title 2 🥈
-          - third line
-          - fourth line
+          - second line
           - command: $PWD
           EOF
+          
+          cat >> "${GITHUB_STEP_SUMMARY}" << EOFABC125
+          ## Example Title 1 :rocket:
+          - third line
+          - command: $PWD 
+          EOFABC125
+          
