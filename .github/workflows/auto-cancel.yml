@@ -16,4 +16,9 @@ jobs:
     timeout-minutes: 4
     name: sleep 180 seconds
     steps:
+      - run: echo "Concurrency is ${GITHUB_WORKFLOW}-${GITHUB_REF}."
+        env:
+          GITHUB_WORKFLOW: ${{ github.workflow }}
+          GITHUB_REF: ${{ github.ref }}
       - run: sleep 180
+
