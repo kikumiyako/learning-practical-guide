@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Second Job
     timeout-minutes: 1
+    needs: first # If you want to run sequentially, otherwise remove this line for parallel execution
     steps:
       - run: sleep 5 && echo "Second job completed"
 
@@ -27,5 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Third Job
     timeout-minutes: 1
+    needs: [first, second] # If you want to run sequentially, otherwise remove this line for parallel execution
     steps:
       - run: sleep 5 && echo "Third job completed"
