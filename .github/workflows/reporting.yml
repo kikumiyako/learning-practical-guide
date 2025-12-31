@@ -17,18 +17,22 @@ jobs:
           echo "::warning::This is a warning"
           echo "::notice::This is a notice"
 
-      - name: Summary Example
-        run: |
+#      - name: Summary Example 1
+#        run: |
 #          echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
 #          echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
 #          echo "- second line" >> "${GITHUB_STEP_SUMMARY}"
+
+      - name: Summary Example 2
+        run: |
           cat >> "${GITHUB_STEP_SUMMARY}" << 'EOF'
           ## Example Title 1 :rocket:
           - first line
           - second line
           EOF
-          cat << 'EOF'
+  
+          cat >> "${GITHUB_STEP_SUMMARY}" << 'EOF'
           ## Example Title 2 🥈
           - third line
           - fourth line
-          EOF >> "${GITHUB_STEP_SUMMARY}"
+          EOF
