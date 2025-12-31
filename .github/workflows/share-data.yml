@@ -15,8 +15,8 @@ jobs:
         id: output-data
         run: |
           # <key>=<value> format to set output
-          echo "result=Hello" >> ${GITHUB_OUTPUT}
-          echo "WORLD=World" >> ${GITHUB_ENV}
+          echo "result=Hello" >> "${GITHUB_OUTPUT}"
+          echo "WORLD=World" >> "${GITHUB_ENV}"
 
       - name: use data
         run: |

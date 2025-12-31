@@ -2,11 +2,11 @@ name: Schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   run-scheduled:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This workflow runs every 3 minutes."
+      - run: echo "This workflow runs every 5 minutes."
       - run: date
