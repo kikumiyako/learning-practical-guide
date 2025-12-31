@@ -9,3 +9,6 @@ test:
 
 sh:
 	docker run -it -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app /bin/bash
+
+actionlint:
+	docker run --rm -v "$(PWD):$(PWD)" -w "$(PWD)" rhysd/actionlint:latest
