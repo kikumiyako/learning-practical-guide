@@ -11,11 +11,30 @@ jobs:
     timeout-minutes: 1
     name: Logging sample
     steps:
-      - run: echo "::debug::This is a debug message"
+      - name: Show debug message
+        run: echo "::debug::This is a debug message"
 
-      - run: |
+      - name: Turn tracing option on
+        run: |
           set -x
-          echo "This is a command with debug output"
           date
-          echo "hi"
           hostname
+
+      - name: Group logs
+        run: |
+          date
+          echo "::group::Show environment variables"
+          printenv
+          echo "::endgroup::"
+          date
+          echo "::group::Show say hi"
+          echo "Hi!"
+          echo "::endgroup::"
+
+      - name: Mask a value
+        run: |
+          echo "The value is ${MASKED_VALUE}."
+          echo "::add-mask::${MASKED_VALUE}"
+          echo "The value is ${MASKED_VALUE}."
+        env:
+          MASKED_VALUE: super_secret_value
