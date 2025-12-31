@@ -2,9 +2,6 @@ name: Matrix
 run-name: Matrix Job Example
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
