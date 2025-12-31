@@ -1,0 +1,14 @@
+name: Logging sample
+run-name: Show debug logs
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+jobs:
+  logging-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Logging sample
+    steps:
+      - run: echo "::debug::This is a debug message"
