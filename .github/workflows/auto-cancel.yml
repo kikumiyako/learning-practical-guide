@@ -1,0 +1,19 @@
+name: Auto cancel
+run-name: Auto cancel redundant workflows
+on:
+  pull_request:
+    branches:
+      - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  auto-cancel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    name: sleep 180 seconds
+    steps:
+      - run: sleep 180
