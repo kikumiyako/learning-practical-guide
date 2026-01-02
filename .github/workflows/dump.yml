@@ -2,9 +2,6 @@ name: Dump
 run-name: Use composite action sample
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
