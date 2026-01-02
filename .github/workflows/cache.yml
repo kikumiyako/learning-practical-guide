@@ -28,7 +28,7 @@ jobs:
       - name: Cache
         run: |
           if [[ -f "${GITHUB_WORKSPACE}/dummy" ]]; then exit 0; fi
-          dd if=/dev/urandom of="${GITHUB_WORKSPACE}/dummy}" bs=1M count=10
+          dd if=/dev/urandom of="${GITHUB_WORKSPACE}/dummy" bs=1M count=10
           sleep 10
 
       - name: List Files
