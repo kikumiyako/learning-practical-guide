@@ -1,0 +1,40 @@
+name: Artifacts
+run-name: Artifact samples
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Upload Artifacts
+    steps:
+      - name: Create sample files
+        run: date > date.txt
+
+      - name: Upload file
+        uses: actions/upload-artifact@v4
+        with:
+          name: uploaded
+          path: date.txt
+          retention-days: 7
+
+  download:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Download Artifacts
+    needs: upload
+    steps:
+      - name: Download file
+        uses: actions/download-artifact@v4
+        with:
+          name: uploaded
+          path: downloaded
+
+      - name: Show downloaded file
+        run: cat downloaded/date.txt

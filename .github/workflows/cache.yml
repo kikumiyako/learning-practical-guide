@@ -2,9 +2,6 @@ name: Cache
 run-name: Cache samples
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
