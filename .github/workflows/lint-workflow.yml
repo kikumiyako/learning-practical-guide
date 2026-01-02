@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 5
     name: Lint GitHub Workflows
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - run: |
           docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest

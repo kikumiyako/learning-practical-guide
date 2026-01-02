@@ -23,7 +23,7 @@ jobs:
         if: ${{ always() }}
 
       - name: Bad Practice Example, never ends
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         if: ${{ always() }}
 
       - run: echo 'hello 6'

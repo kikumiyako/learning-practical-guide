@@ -12,7 +12,7 @@ jobs:
     name: Dump env and context
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set FROM_GLOBAL
         run: echo "FROM_GLOBAL=from_global_value" >> "${GITHUB_ENV}"
