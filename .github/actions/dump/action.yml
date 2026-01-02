@@ -32,7 +32,10 @@ runs:
       if: ${{ inputs.enable-context == 'true' }}
       env:
         CONTEXT: ${{ toJson(github) }}
-      run: echo "${CONTEXT}"
+      run: |
+        echo "::group::show context"
+        echo "${CONTEXT}"
+        echo "::endgroup::"
 
     - name: Set dumped date
       id: current

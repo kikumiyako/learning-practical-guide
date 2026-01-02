@@ -31,4 +31,4 @@ jobs:
           DATE: ${{ steps.dump.outputs.dumped-date }}
         run: |
           echo "date is ${DATE}"
-          echo "global env is #{GLOBAL}"
+          echo "global env is ${GLOBAL}"
