@@ -1,0 +1,36 @@
+name: Cache
+run-name: Cache samples
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  cache-sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    name: Cache Sample Job
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Cache
+        uses: actions/cache@v4
+        with:
+          key: test-${{ runner.os }}-${{ github.sha }}  # cache key
+          path: ${{ github.workspace }}/dummy           # cache target path
+          restore-keys: |                               # restore keys
+            test-${{ runner.os }}-
+      
+      - name: Cache
+        run: |
+          if [[ -f "${GITHUB_WORKSPACE}/dummy" ]]; then exit 0; fi
+          dd if=/dev/urandom of="${GITHUB_WORKSPACE}/dummy}" bs=1M count=10
+          sleep 10
+
+      - name: List Files
+        run: |
+          ls -lh "${GITHUB_WORKSPACE}/dummy"
