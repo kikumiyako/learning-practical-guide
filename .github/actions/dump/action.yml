@@ -15,15 +15,24 @@ runs:
   using: composite
   steps:
     - name: Dump env and sort
-      run: printenv | sort
       shell: bash
+      run: |
+        echo "::group::printenv"
+        printenv | sort
+        echo "::endgroup::"
+        echo "::group::set GLOBAL value"
+        echo "GLOBAL=global_value" >> "${GITHUB_ENV}"
+        echo "::endgroup::"
+        echo "::group::show FROM_GLOBAL value"
+        echo "from_global values is ${FROM_GLOBAL}"
+        echo "::endgroup::"
 
     - name: Show env
-      run: echo "${CONTEXT}"
+      shell: bash
       if: ${{ inputs.enable-context == 'true' }}
       env:
         CONTEXT: ${{ toJson(github) }}
-      shell: bash
+      run: echo "${CONTEXT}"
 
     - name: Set dumped date
       id: current

@@ -17,6 +17,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set FROM_GLOBAL
+        run: echo "FROM_GLOBAL=from_global_value" >> "${GITHUB_ENV}"
+
       - name: Dump env
         uses: ./.github/actions/dump
         id: dump
@@ -26,4 +29,6 @@ jobs:
       - name: Show dumped date
         env:
           DATE: ${{ steps.dump.outputs.dumped-date }}
-        run: echo "date is ${DATE}"
+        run: |
+          echo "date is ${DATE}"
+          echo "global env is #{GLOBAL}"
