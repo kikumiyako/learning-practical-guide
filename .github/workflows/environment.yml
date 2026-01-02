@@ -1,0 +1,29 @@
+name: Environment
+run-name: Use Environment Variables in Workflows
+on:
+  workflow_dispatch:
+    inputs:
+      env-name:
+        type: environment
+        default: test
+        required: false
+        description: Environment name
+defaults:
+  run:
+    shell: bash
+jobs:
+  print:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Print Environment Variables
+    environment: ${{ inputs.env-name }}
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    steps:
+      - name: Print Environment Variables
+        run: |
+          echo "Environment Name: ${{ inputs.env-name }}"
+          echo "USERNAME: ${USERNAME}"
+          echo "PASSWORD: ${PASSWORD}"
+          echo "PASSWORD: ${PASSWORD:0:1} ${PASSWORD#?*}"
