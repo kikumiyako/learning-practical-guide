@@ -1,0 +1,29 @@
+name: Dump
+run-name: Use composite action sample
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+defaults:
+  run:
+    shell: bash
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    name: Dump env and context
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Dump env
+        uses: ./.github/actions/dump
+        id: dump
+        with:
+          enable-context: 'true'
+
+      - name: Show dumped date
+        env:
+          DATE: ${{ steps.dump.outputs.dumped-date }}
+        run: echo "date is ${DATE}"

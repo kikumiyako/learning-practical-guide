@@ -2,9 +2,6 @@ name: Artifacts
 run-name: Artifact samples
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
