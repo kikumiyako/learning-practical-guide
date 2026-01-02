@@ -1,9 +1,7 @@
 name: Auto cancel
 run-name: Auto cancel redundant workflows
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
