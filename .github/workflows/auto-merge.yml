@@ -23,7 +23,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Merge Dependabot PRs
-        run: gh pr merge "${GITHUB_HEAD_REF}" --merge --auto
+      - name: Get Dependabot Metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          alert-lookup: true
+          compat-lookup: true
+          github-token: ${{ secrets.FETCH_DEPENDABOT_METADATA }}
 
+      - name: Debug Metadata
+        run: |
+          echo "Dependabot metadata: ${{ toJson(steps.metadata.outputs) }}"
 
+#      - name: Merge Dependabot PRs
+#        run: |
+#          gh pr review "${GITHUB_HEAD_REF}" --approve
+#          gh pr merge "${GITHUB_HEAD_REF}" --merge --auto
