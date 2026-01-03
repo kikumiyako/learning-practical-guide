@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Hello, Go!")
+	fmt.Println("Hello, Go!!")
 }
 
 func EvenOrOdd(number int) string {
