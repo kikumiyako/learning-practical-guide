@@ -2,9 +2,6 @@ name: Old-dependabot
 run-name: old-dependabot sample
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 defaults:
   run:
     shell: bash
