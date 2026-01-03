@@ -12,4 +12,4 @@ jobs:
     name: old-dependabot job
     steps:
       - name: Just set up using old version
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v5

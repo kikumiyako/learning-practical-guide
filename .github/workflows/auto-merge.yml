@@ -24,6 +24,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Merge Dependabot PRs
-        run: gh pr merge "${GITHUB_HEAD_REF}" --merge
+        run: gh pr merge "${GITHUB_HEAD_REF}" --merge --auto
 
 
