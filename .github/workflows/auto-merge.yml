@@ -1,5 +1,5 @@
 name: Auto-merge
-run-name: Auto-merge PRs
+run-name: Auto-merge Dependabot PRs
 on:
   workflow_dispatch:
   pull_request:
