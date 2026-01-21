@@ -12,8 +12,12 @@ jobs:
     name: Release Job
     timeout-minutes: 1
     env:
+      # github.ref_name
+      # branch push: branch name
+      # tag push: tag name
       VERSION: ${{ github.ref_name }}
     permissions:
+      # リリースノートの作成に必要
       contents: write
     steps:
       - uses: actions/checkout@v4
@@ -22,6 +26,7 @@ jobs:
         with:
           go-version: '1.25'
 
+      # RUNNER_TEMPにて空提供される一時ディレクトリを置き場に使う
       - name: Build
         run: |
           go build -ldflags "-X main.version=${VERSION}" \
