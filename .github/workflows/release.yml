@@ -1,0 +1,36 @@
+name: Release
+run-name: Release Workflow
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Release Job
+    timeout-minutes: 1
+    env:
+      VERSION: ${{ github.ref_name }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.25'
+
+      - name: Build
+        run: |
+          go build -ldflags "-X main.version=${VERSION}" \
+          -o "${RUNNER_TEMP}/example" go/example/main.go
+
+      - name: Create Release Notes and Upload
+        run: |
+          gh release create "${VERSION}" --title "${VERSION}" --geberate-notes
+          gh release upload "${VERSION}" "${RUNNER_TEMP}/example"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
