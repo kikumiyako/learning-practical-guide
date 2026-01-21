@@ -29,7 +29,7 @@ jobs:
 
       - name: Create Release Notes and Upload
         run: |
-          gh release create "${VERSION}" --title "${VERSION}" --geberate-notes
+          gh release create "${VERSION}" --title "${VERSION}" --generate-notes
           gh release upload "${VERSION}" "${RUNNER_TEMP}/example"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
