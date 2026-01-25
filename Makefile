@@ -1,14 +1,14 @@
 build:
-	docker build -t my-golang-app .
+	@docker build -t my-golang-app .
 
 run:
-	docker run --rm -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app
+	@docker run --rm -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app
 
 test:
-	docker run --rm -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app go test
+	@docker run --rm -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app go test
 
 sh:
-	docker run -it -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app /bin/bash
+	@docker run -it -v "$(PWD)/go/excellent:/usr/src/app" -w /usr/src/app my-golang-app /bin/bash
 
 actionlint:
-	docker run --rm -v "$(PWD):$(PWD)" -w "$(PWD)" rhysd/actionlint:latest
+	@docker run --rm -v "$(PWD):$(PWD)" -w "$(PWD)" rhysd/actionlint:latest
