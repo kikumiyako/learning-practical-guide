@@ -1,0 +1,27 @@
+name: Call Reusable Workflow
+run-name: Call Reusable Workflow Example
+on:
+  pull_request:
+defaults:
+  run:
+    shell: bash
+jobs:
+  call:
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      pr_number: ${{ github.event.pull_request.number }}
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: read
+      pull-requests: write
+  print:
+    needs: [call]
+    runs-on: ubuntu-latest
+    name: Print Message
+    timeout-minutes: 1
+    steps:
+      - name: Show Message
+        run: echo "Result> ${MESSAGE}"
+        env:
+          MESSAGE: ${{ needs.call.outputs.message }}
