@@ -9,7 +9,7 @@ jobs:
   call:
     uses: ./.github/workflows/reusable-workflow.yml
     with:
-      pr_number: ${{ github.event.pull_request.number }}
+      pr-number: ${{ github.event.pull_request.number }}
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     permissions:
