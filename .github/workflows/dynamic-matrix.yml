@@ -1,0 +1,27 @@
+name: Dynamic Matrix
+run-name: Dynamic Matrix Example
+on: push
+defaults:
+  run:
+    shell: bash
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    name: Prepare Matrix
+    timeout-minutes: 1
+    steps:
+      - id: set-matrix
+        run: |
+          json='{"runner": ["ubuntu-latest", "macos-latest"]}'
+          echo "json=${json}" >> "${GITHUB_OUTPUT}"
+    outputs:
+      matrix-json: ${{ steps.set-matrix.outputs.json }}
+  print:
+    needs: [prepare]
+    name: Print Matrix
+    timeout-minutes: 1
+    strategy:
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix-json) }}
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - run: echo "${RUNNER_OS}"
