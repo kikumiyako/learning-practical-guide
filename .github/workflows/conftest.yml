@@ -1,0 +1,19 @@
+name: Conftest
+run-name: conftest
+on:
+  pull_request:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: conftest
+    timeout-minutes: 1
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: |
+          docuer run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" \
+          openpolicyagent/conftest test --policy policy/ .github/workflows    
