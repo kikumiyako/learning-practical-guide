@@ -27,3 +27,6 @@ trivy:          ### Usage: make trivy IMAGE=alpine:latest
 
 trivy-local:    ### Usage: make trivy-local IMAGE=my-golang-app
 	@docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image $(IMAGE)
+
+conftest:       ### Usage: make trivy-local IMAGE=my-golang-app
+	@docker run --rm -v "$(PWD):$(PWD)" -w "$(PWD)" openpolicyagent/conftest test --policy policy/ .github/workflows/
