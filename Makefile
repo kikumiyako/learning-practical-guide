@@ -30,3 +30,6 @@ trivy-local:    ### Usage: make trivy-local IMAGE=my-golang-app
 
 conftest:       ### Usage: make trivy-local IMAGE=my-golang-app
 	@docker run --rm -v "$(PWD):$(PWD)" -w "$(PWD)" openpolicyagent/conftest test --policy policy/ .github/workflows/
+
+openssf:        ### Usage: make openssf REPO=kikumiyako/learning-practical-guide
+	@docker run -e GITHUB_AUTH_TOKEN=$$(gh auth token) gcr.io/openssf/scorecard:stable --repo=$(REPO)
