@@ -1,0 +1,32 @@
+name: Cross repo access using GitHub App token
+run-name: Cross repo access using GitHub App token
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+env:
+  TARGET_REPO: "gh-oidc"
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    name: Checkout
+    timeout-minutes: 1
+    steps:
+      - name: Create GitHub Apps Token
+        id: create
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+          repositories: ${{ env.TARGET_REPO }}
+
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/${{ env.TARGET_REPO }}
+          path: ${{ env.TARGET_REPO }}
+          token: ${{ steps.create.outputs.token }}
+
+      - name: Show target repo README
+        run: cat ${{ env.TARGET_REPO }}/README.md
